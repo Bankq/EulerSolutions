@@ -42,5 +42,4 @@ def sum_up():
     return sum
 
 
-#print is_prime(4)
 print sum_up()
