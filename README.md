@@ -17,7 +17,7 @@ Let me know what you think.
 My username on ProjectEuler.net is Bankq, as always.
 
 Solved:
-1-12
+1-12,14
 
 
 
