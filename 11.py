@@ -29,7 +29,7 @@
 #  What is the greatest product of four adjacent numbers in any direction (up, down, left, right, or diagonally) in the 20 *20 grid?
 
 
-matrix = [
+m = [
     [8 ,2 ,22 ,97 ,38 ,15 ,0 ,40 ,0 ,75 ,4 ,5 ,7 ,78 ,52 ,12 ,50 ,77 ,91 ,8],
     [49 ,49 ,99 ,40 ,17 ,81 ,18 ,57 ,60 ,87 ,17 ,40 ,98 ,43 ,69 ,48 ,4 ,56 ,62 ,0],
     [81 ,49 ,31 ,73 ,55 ,79 ,14 ,29 ,93 ,71 ,40 ,67 ,53 ,88 ,30 ,3 ,49 ,13 ,36 ,65],
@@ -52,24 +52,57 @@ matrix = [
     [1 ,70 ,54 ,71 ,83 ,51 ,54 ,69 ,16 ,92 ,33 ,48 ,61 ,43 ,52 ,1 ,89 ,19 ,67 ,48],
     ]
 
+# p = product
+p = [[0 for i in range(20)] for j in range(20)]
 
-class N:
-    def __init__(self,x,y,v):
-        self.v   =   v    # value
-        self.x   =   x    # position x
-        self.y   =   y    # position y
-        self.rp  =   0    # right product
-        self.dq  =   0    # down product
-        self.rdp =   0    # right(downside) diagonal product
-        self.ldp =   0    # left
-    
-    def right(self,m,o):
-        if self.y > 16: # no right product
-            return
-        elif self.y == 0: # first one in the row
-            self.rp = self.v * m[x][1] * m[x][2] * m[x][3]
-            return
+# SOLUTION:
+# This is a kinda trivial solution. It can be improved by using p[i][j-1] to accelerate 
+# computing p[i][j]. But anyway, I wasted too much time one python array so I just want
+# to get the correct answer asap.
+
+# 1. product in row
+MAX = 0 
+for i in range(20):
+    for j in range(20):
+        if m[i][j] == 0 or j > 16:
+            p[i][j] = 0
         else:
+            p[i][j] = m[i][j] * m[i][j+1] * m[i][j+2] * m[i][j+3]
+        if p[i][j] > MAX:
+            MAX = p[i][j]
+# 2. product in line
+for j in range(20):
+    for i in range(20):
+        if m[i][j] == 0 or i > 16:
+            p[i][j] = 0
+        else:
+            p[i][j] = m[i][j] * m[i+1][j] * m[i+2][j] * m[i+3][j]
+        if p[i][j] > MAX:
+            MAX = p[i][j]
 
-            return
-    
+# 3. product in right-down diagonal
+for i in range(20):
+    for j in range(20):
+        if m[i][j] == 0 or j > 16 or i > 16:
+            p[i][j] = 0
+        else:
+            p[i][j] = m[i][j] * m[i+1][j+1] * m[i+2][j+2] * m[i+3][j+3]
+        if p[i][j] > MAX:
+            MAX = p[i][j]
+
+# 4. product in left-down diagonal
+for i in range(20):
+    for j in range(20):
+        if m[i][j] == 0 or j < 3 or i > 16:
+            p[i][j] = 0
+        else:
+            p[i][j] = m[i][j] * m[i+1][j-1] * m[i+2][j-2] * m[i+3][j-3]
+        if p[i][j] > MAX:
+            MAX = p[i][j]
+
+
+print MAX
+
+
+
+
