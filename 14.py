@@ -35,9 +35,6 @@ d = {13:10,40:9,20:8,10:7,5:6,16:5,8:4,4:3,2:2,1:1}
 for i in range(1,1000000):
     d[i] = get_len(i,d)
 
-MAX = max(d.values())
-for i in d:
-     if d[i] == MAX:
-         print i
+print max(d, key=d.get)
 
     
