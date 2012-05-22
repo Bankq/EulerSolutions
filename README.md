@@ -1,5 +1,14 @@
 # Euler Solutions
 
+## EDIT(2012-MAY-22)
+
+_I didn't keep updating since the last commit_
+
+_I've decided to solve as much problem as possible using *HASKELL* this summer as a way to learn haskell programming_
+
+_We will see_
+
+
 This is a tiny project in order to keep track of my solutions to [Euler Project](http://projecteuler.net).
 
 The problem is descibed in the solution files named as 10.py, which means it is the solution to problem No.10 using python programming language.
