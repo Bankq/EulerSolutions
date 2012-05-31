@@ -18,3 +18,4 @@ for i in range(S+1):
         else:
             m[i][j] = m[i-1][j] + m[i][j-1]
 print m[S][S]
+
